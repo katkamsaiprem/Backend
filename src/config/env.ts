@@ -26,6 +26,7 @@ const requireEnv = (key: string) => {
             `Make sure it is defined in your .env file `
         );
     }
+    return value;
 }
 
 export const env = {
@@ -45,5 +46,8 @@ export const isProduction = env.NODE_ENV === "production";
 export const isTest = env.NODE_ENV === "test";
 
 
-
-
+// TODO
+/**
+ * - 
+ * 
+ */
