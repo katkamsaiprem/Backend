@@ -24,3 +24,9 @@ export const users = pgTable("users", {
 
     ]
 )
+
+
+//automatic ts types creation based on schema using drizzle
+export type SelectUser = typeof users.$inferSelect;
+
+export type InsertUser = typeof users.$inferInsert;

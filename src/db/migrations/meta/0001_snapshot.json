@@ -1,0 +1,246 @@
+{
+  "id": "071fc8a3-9b4d-43cc-9ce9-12b0f83ebc2c",
+  "prevId": "2bd01680-e7ac-46f0-8fce-4f80a2f2c3f0",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bio": {
+          "name": "bio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "users_email_unique_idx": {
+          "name": "users_email_unique_idx",
+          "columns": [
+            {
+              "expression": "email",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.properties": {
+      "name": "properties",
+      "schema": "",
+      "columns": {
+        "propertyId": {
+          "name": "propertyId",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "propertyName": {
+          "name": "propertyName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "propertyImage": {
+          "name": "propertyImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageArr": {
+          "name": "imageArr",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "city": {
+          "name": "city",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "country": {
+          "name": "country",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "numeric(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "numberOfBathrooms": {
+          "name": "numberOfBathrooms",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "numberOfguest": {
+          "name": "numberOfguest",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "numberOfBedrooms": {
+          "name": "numberOfBedrooms",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "numberOfStudies": {
+          "name": "numberOfStudies",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hostName": {
+          "name": "hostName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "amenties": {
+          "name": "amenties",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "healthAndSafety": {
+          "name": "healthAndSafety",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "houseRules": {
+          "name": "houseRules",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "propertyType": {
+          "name": "propertyType",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_cancelable": {
+          "name": "is_cancelable",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

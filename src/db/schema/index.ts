@@ -3,3 +3,4 @@
 
 
 export * from "./users.schema.js"
+export * from "./properties.schema.js"
