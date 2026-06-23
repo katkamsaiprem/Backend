@@ -1,18 +1,48 @@
 import { InsertProperty } from "@/db/schema/properties.schema.js"
 import { createPropertyRepository } from "./properties.repository.js"
+import { AppError } from "@/middlewares/globalErrorHandler.js"
 
 
 
 
-export const createServiceProperty = async (dto: InsertProperty) => {
+export const createPropertyService = async (dto: InsertProperty) => {
 
-    //validation
+    //bussiness logic
+
+    //RuleOne price must be positive and not free
+    if (Number(dto.price) <= 0) {
+        throw new AppError("Price must be positive number and not free ", 400)
+    }
+    //RuleTwo rating must be between 1 to 5
+    if (dto.rating < 0 || dto.rating > 5) {
+        throw new AppError("Rating must be betweeen 1 to 5", 400)
+    }
+    //RuleThree must have least 1 bedroom
+    if (dto.numberOfBedrooms < 1) {
+        throw new AppError("Must have at least 1 bedroom", 400)
+    }
+
+
+    //sanitizate the data before saving , sanitize only human typed text ,
+    //to prevent comparison bugs, to save clean db records , to get correct search and filter results
+    const sanitizedDto = {
+        ...dto,
+        name: dto.name.trim(),
+        category: dto.category.trim(),
+        address: dto.address.trim(),
+        city: dto.city.trim(),
+        state: dto.state.trim(),
+        country: dto.country.trim(),
+        hostName: dto.hostName.trim(),
+        propertyType: dto.propertyType.trim(),
+
+    }
 
     //inserting data into db
-    return createPropertyRepository(dto)
-    //error handling
+    return createPropertyRepository(sanitizedDto)
 
-    //returning response
+
+
 
 
 }

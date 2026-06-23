@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProperty } from "./properties.controller.js";
+import { createPropertyController } from "./properties.controller.js";
 
 
 
@@ -7,7 +7,8 @@ const router = Router()// instead of using app.use directly we can use this to g
 
 // router.get("/", getAllproperties)
 
-router.post("/", createProperty)
+router.post("/", createPropertyController)
+// router.get("/", getAllProperties)
 
 
 export default router
