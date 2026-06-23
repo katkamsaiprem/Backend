@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createPropertyService } from "./properties.service.js"
+import { createPropertyService, getAllPropertiesService } from "./properties.service.js"
 import { InsertProperty } from "@/db/schema/properties.schema.js"
 
 
@@ -33,6 +33,12 @@ export const createPropertyController = async (req: Request, res: Response): Pro
 
 export const getAllPropertiesController = async (_req: Request, res: Response): Promise<void> => {
 
+    const properties = await getAllPropertiesService()
 
+    res.status(200).json({
+        success: true,
+        data: properties,
+        message: "successfully fetched all properties"
+    })
 
 }

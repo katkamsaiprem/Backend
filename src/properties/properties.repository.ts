@@ -18,3 +18,7 @@ export const createPropertyRepository = async (data: InsertProperty) => {
 
 }
 
+export const getAllPropertiesRepository = async () => {
+
+    return db.select().from(properties)
+}
