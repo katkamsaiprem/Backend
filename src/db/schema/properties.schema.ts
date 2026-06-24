@@ -1,4 +1,4 @@
-import { boolean, numeric, pgTable, serial, smallint, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { boolean, index, numeric, pgTable, serial, smallint, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 
 
@@ -30,8 +30,16 @@ export const properties = pgTable("properties", {
     isCancelable: boolean("is_cancelable").notNull()
 
 },
-    //TODO
-    // index
+    (properties) => [
+        index("idx_city").on(properties.city),
+        index("idx_country").on(properties.country),
+        index("idx_category").on(properties.category),
+        index("idx_propertyType").on(properties.propertyType),
+        index("idx_price").on(properties.price),
+        index("idx_rating").on(properties.rating),
+        index("idx_createdAt").on(properties.createdAt),
+
+    ]
 
 )
 

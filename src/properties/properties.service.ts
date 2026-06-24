@@ -1,5 +1,5 @@
 import { InsertProperty } from "@/db/schema/properties.schema.js"
-import { createPropertyRepository, getAllPropertiesRepository } from "./properties.repository.js"
+import { categoriesRepository, createPropertyRepository, getAllPropertiesRepository } from "./properties.repository.js"
 import { AppError } from "@/middlewares/globalErrorHandler.js"
 
 
@@ -50,4 +50,9 @@ export const createPropertyService = async (dto: InsertProperty) => {
 export const getAllPropertiesService = async () => {
 
     return await getAllPropertiesRepository()
+}
+
+export const categoriesService = async (category: string) => {
+
+    return await categoriesRepository(category)
 }

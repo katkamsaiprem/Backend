@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createPropertyService, getAllPropertiesService } from "./properties.service.js"
+import { categoriesService, createPropertyService, getAllPropertiesService } from "./properties.service.js"
 import { InsertProperty } from "@/db/schema/properties.schema.js"
 
 
@@ -31,9 +31,10 @@ export const createPropertyController = async (req: Request, res: Response): Pro
 }
 
 
-export const getAllPropertiesController = async (_req: Request, res: Response): Promise<void> => {
+export const getPropertiesController = async (req: Request, res: Response): Promise<void> => {
 
-    const properties = await getAllPropertiesService()
+    const { category } = req.query // ?category=villa
+    const properties = category ? await categoriesService(category as string) : await getAllPropertiesService()
 
     res.status(200).json({
         success: true,

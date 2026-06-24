@@ -1,5 +1,6 @@
 import { db } from "@/db/index.js"
 import { InsertProperty, properties } from "@/db/schema/properties.schema.js"
+import { eq } from "drizzle-orm";
 
 
 
@@ -21,4 +22,11 @@ export const createPropertyRepository = async (data: InsertProperty) => {
 export const getAllPropertiesRepository = async () => {
 
     return db.select().from(properties)
+}
+
+export const categoriesRepository = async (category: string) => {
+
+    return await db.select().from(properties).where(eq(properties.category, category))
+
+
 }
