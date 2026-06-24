@@ -26,7 +26,18 @@ export const getAllPropertiesRepository = async () => {
 
 export const categoriesRepository = async (category: string) => {
 
+
     return await db.select().from(properties).where(eq(properties.category, category))
 
+
+}
+
+
+export const getPropertyByIdRepository = async (id: Number) => {
+
+
+    const [property] = await db.select().from(properties).where(eq(properties.id, Number(id))) //db.select() always returns an array 
+
+    return property;
 
 }

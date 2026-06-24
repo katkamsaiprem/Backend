@@ -5,10 +5,10 @@ import { boolean, index, numeric, pgTable, serial, smallint, text, timestamp, va
 
 export const properties = pgTable("properties", {
 
-    id: serial("propertyId").primaryKey(),
-    name: varchar("propertyName", { length: 100 }).notNull(),
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 100 }).notNull(),
     category: varchar("category", { length: 100 }).notNull(),
-    image: text("propertyImage").notNull(),
+    image: text("Image").notNull(),
     imageArr: text("imageArr").array().notNull(),
     address: varchar("address", { length: 100 }).notNull(),
     city: varchar("city", { length: 100 }).notNull(),

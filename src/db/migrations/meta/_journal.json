@@ -15,6 +15,13 @@
       "when": 1782150707944,
       "tag": "0001_graceful_betty_brant",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782310322593,
+      "tag": "0002_outgoing_nextwave",
+      "breakpoints": true
     }
   ]
 }
