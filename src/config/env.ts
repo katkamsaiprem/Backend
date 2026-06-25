@@ -38,7 +38,7 @@ export const env = {
 
 
 //Type helper to check the env anywhere
-export type NodeEnv = "development" | "production" | "test" // union type (means only these three values are allowed)
+export type NodeEnv = "development" | "production" | "test"; // union type (means only these three values are allowed)
 
 //env flags
 export const isDevelopment = env.NODE_ENV === "development";
