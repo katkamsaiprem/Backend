@@ -31,7 +31,8 @@ export default {
     //use verbose to log every sql statement that drizzle-kit run
     verbose: true,
 
-
-    strict: true,//// when true , drizzle-kit will not make a dangerous ,data -deleting changes with out permission
+    //automates the mapping of camelCase to snake_case (for postgress or sql snake_case is standard)
+    casing: "snake_case",
+    strict: true,// when true , drizzle-kit will not make a dangerous ,data -deleting changes with out permission
 
 } satisfies Config; //satisfies checks the obj against config type ,if it matching shape defination or not ,if not ,it shows compile time error

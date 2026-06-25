@@ -5,10 +5,10 @@ import { createUserService } from "./users.service.js";
 
 const signUpController = async (req: Request, res: Response): Promise<void> => {
 
-    const input = req.body as InsertUser // remove this type casting after implementing ZOD
+    const body = req.body as InsertUser // remove this type casting after implementing ZOD
 
 
-    const user = await createUserService(input)
+    const user = await createUserService(body)
 
     res.status(201).json({
         success: true,

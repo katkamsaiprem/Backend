@@ -14,7 +14,7 @@ const pool = new Pool({
     max: 20, //max connections to kept open for db
     idleTimeoutMillis: 30000,// if connection is not used within 30sec then close    
     connectionTimeoutMillis: 2000, // if a req is waiting for more than 2 seconds then give up and throw error
-
+    
 
 
 })
