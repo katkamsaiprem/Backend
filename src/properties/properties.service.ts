@@ -1,5 +1,5 @@
 import { InsertProperty } from "@/db/schema/properties.schema.js"
-import { categoriesRepository, createPropertyRepository, getAllPropertiesRepository } from "./properties.repository.js"
+import { categoriesRepository, createPropertyRepository, getAllPropertiesRepository, getPropertyByIdRepository } from "./properties.repository.js"
 import { AppError } from "@/middlewares/globalErrorHandler.js"
 
 
@@ -55,4 +55,10 @@ export const getAllPropertiesService = async () => {
 export const categoriesService = async (category: string) => {
 
     return await categoriesRepository(category)
+}
+
+export const getPropertyByIdService = async (id: Number) => {
+
+    return await getPropertyByIdRepository(id)
+
 }
