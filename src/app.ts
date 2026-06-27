@@ -1,9 +1,9 @@
 import express from "express"
 
-import { globalErrorHandler } from "@/middlewares/globalErrorHandler.js";
-import { notFoundHandler } from "@/middlewares/notFound.js";
+import { globalErrorHandler } from "@/middlewares/globalErrorHandler.middlewares.js";
+import { notFoundHandler } from "@/middlewares/routeNotFound.middlewares.js";
 import propertyRouter from "@/properties/properties.router.js";
-import usersRouter from "./users/users.router.js";
+import authRouter from "./auth/auth.router.js";
 
 
 
@@ -20,8 +20,11 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }))
 
 //Routes
 
+
+
+app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/properties", propertyRouter);
-app.use("/api/v1/auth/register", usersRouter)
+
 
 
 

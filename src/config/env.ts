@@ -34,6 +34,10 @@ export const env = {
     PORT: parseInt(process.env.PORT ?? "3000", 10), // converts string into base 10 mathematical integer
     DATABASE_URL: requireEnv("DATABASE_URL"),// if not present then requireEnv stops backend
     CORS_ORIGIN: process.env.CORS_ORIGIN ?? "http://localhost:5173",
+    ACCESS_TOKEN_SECRET: requireEnv("ACCESS_TOKEN_SECRET"),
+    REFRESH_TOKEN_SECRET: requireEnv("REFRESH_TOKEN_SECRET"),
+    ACCESS_TOKEN_EXPIRY: requireEnv("ACCESS_TOKEN_EXPIRY"),
+    REFRESH_TOKEN_EXPIRY: requireEnv("REFRESH_TOKEN_EXPIRY"),
 } as const; // as const(const assertion) makes two things happens ,properties becomes readonly , values becomes literal(custom data )types ("development" instead of string,...)
 
 
@@ -46,8 +50,3 @@ export const isProduction = env.NODE_ENV === "production";
 export const isTest = env.NODE_ENV === "test";
 
 
-// TODO
-/**
- * - 
- * 
- */

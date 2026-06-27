@@ -32,7 +32,7 @@ export const users = pgTable("users", {
         //third argu is optional
         // mostly used for table level rules and indexes
         uniqueIndex("users_email_unique_idx").on(users.email),
-
+        uniqueIndex("users_username_unique_idx").on(users.username)
     ]
 )
 
