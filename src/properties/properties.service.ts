@@ -1,6 +1,6 @@
 import { InsertProperty } from "@/db/schema/properties.schema.js"
 import { categoriesRepository, createPropertyRepository, getAllPropertiesRepository, getPropertyByIdRepository } from "./properties.repository.js"
-import { AppError } from "@/middlewares/globalErrorHandler.js"
+import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
 
 
 
