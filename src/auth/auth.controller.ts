@@ -1,7 +1,7 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import { InsertUser } from "@/db/schema/users.schema.js";
 import { createUserService } from "./auth.service.js";
-import { setAccessToken } from "@/utils/cookies.utils.js";
+import { setAccessToken, setRefreshToken } from "@/utils/cookies.utils.js";
 
 
 
@@ -12,19 +12,21 @@ export const registerController = async (req: Request, res: Response): Promise<v
     const body = req.body as InsertUser // remove this type casting after implementing ZOD
 
 
-    const user = await createUserService(body)
+    const { tokens, user } = await createUserService(body)
+
+
 
 
 
     // TODO 
     // set cookies that browser stores them automatically 
-
-    //setAccessToken(res,)
+    setAccessToken(res, tokens.accessToken)
+    setRefreshToken(res, tokens.refreshToken)
 
     res.status(201).json({
         success: true,
-        data: user,
-        message: "user created successfully"
+        data: { user },
+        message: "Account created successfully"
     })
 
 }

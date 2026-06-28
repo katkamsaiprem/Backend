@@ -28,7 +28,7 @@ const pool = new Pool({
  * @param schema - drizzle schema
  * @param logger - prints sql queries on console
  */
-export const db = drizzle(pool, { logger: true })
+export const db = drizzle(pool, { logger: true, casing: "snake_case" })
 
 
 

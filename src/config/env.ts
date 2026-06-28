@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import type { StringValue } from "ms"; // the duration-string type that jsonwebtoken uses for expiresIn
 
 
 // Environment variables validation
@@ -36,8 +37,8 @@ export const env = {
     CORS_ORIGIN: process.env.CORS_ORIGIN ?? "http://localhost:5173",
     ACCESS_TOKEN_SECRET: requireEnv("ACCESS_TOKEN_SECRET"),
     REFRESH_TOKEN_SECRET: requireEnv("REFRESH_TOKEN_SECRET"),
-    ACCESS_TOKEN_EXPIRY: requireEnv("ACCESS_TOKEN_EXPIRY"),
-    REFRESH_TOKEN_EXPIRY: requireEnv("REFRESH_TOKEN_EXPIRY"),
+    ACCESS_TOKEN_EXPIRY: requireEnv("ACCESS_TOKEN_EXPIRY") as StringValue, // cast so jwt.sign accepts it as a valid duration (e.g. "15m","7d")
+    REFRESH_TOKEN_EXPIRY: requireEnv("REFRESH_TOKEN_EXPIRY") as StringValue,
 } as const; // as const(const assertion) makes two things happens ,properties becomes readonly , values becomes literal(custom data )types ("development" instead of string,...)
 
 
