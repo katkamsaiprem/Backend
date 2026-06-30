@@ -1,6 +1,6 @@
 import { db } from "@/db/index.js"
-import { InsertUser, users } from "@/db/schema/users.schema.js"
-import { eq, ilike, or } from "drizzle-orm";
+import { InsertUser, SelectUser, users } from "@/db/schema/users.schema.js"
+import { and, eq, ilike, or } from "drizzle-orm";
 
 export const createUserRepository = async (payload: InsertUser) => {
 
@@ -34,3 +34,48 @@ export const createUser = async ({ email, username, passwordHash }: Pick<InsertU
     const [userCreated] = await db.insert(users).values({ email, username, passwordHash }).returning(); // returing returns all columns of created user (fields)
     return userCreated;
 }
+
+export const findUserByEmail = async ({ email }: Pick<SelectUser, "email">) => {
+
+    const result = await db.select().from(users).where(eq(users.email, email.trim().toLowerCase()));
+    const existingUser = result[0] || null;
+
+    return existingUser;
+}
+
+export const saveRefreshToken = async ({ id, refreshTokenHash }: Pick<SelectUser, "refreshTokenHash" | "id">) => {
+
+    return await db.update(users).set({ refreshTokenHash, issuedRefreshTokenAt: new Date(), updatedAt: new Date() }).where(eq(users.id, Number(id)))
+}
+
+
+export const findUserById = async ({ id }: Pick<SelectUser, "id">) => {
+
+    const result = await db.select().from(users).where(eq(users.id, id))
+
+    return result[0] || null
+
+}
+
+
+
+// revoke refresh token by clearing it from the DB 
+// called on logout
+export const revokeRefreshToken = async ({ id }: Pick<SelectUser, "id">) => {
+    await db.update(users).set({ refreshTokenHash: null, issuedRefreshTokenAt: null, updatedAt: new Date() }).where(eq(users.id, id))
+}
+
+export const rotateRefreshToken = async ({ id, oldRefreshTokenHash, newRefreshTokenHash }: { id: number, oldRefreshTokenHash: string, newRefreshTokenHash: string }) => {
+    const result = await db.update(users)
+        .set({ refreshTokenHash: newRefreshTokenHash, issuedRefreshTokenAt: new Date(), updatedAt: new Date() })
+        .where(
+            and(
+                eq(users.id, id),
+                eq(users.refreshTokenHash, oldRefreshTokenHash)
+            )
+        )
+        .returning({ id: users.id });
+
+    return result.length > 0;
+}
+

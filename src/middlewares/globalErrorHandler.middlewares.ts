@@ -40,7 +40,7 @@ export const globalErrorHandler = (
         return;
     }
 
-    // Handle database unique constraint violations (e.g duplicate email)
+    // Handle database unique constraint violations
     if (err.message.includes("unique constraint")) {
         res.status(409).json({
             success: false,

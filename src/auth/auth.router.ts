@@ -1,5 +1,7 @@
 import { Router } from "express";
-import { registerController } from "./auth.controller.js";
+import { getMeController, loginController, logoutController, refreshController, registerController } from "./auth.controller.js";
+import { authenticate } from "@/middlewares/authenthicate.middleware.js";
+import { authRateLimiter, generalRateLimiter } from "@/middlewares/reateLimiter.middleware.js";
 
 
 const authRouter = Router();
@@ -11,6 +13,21 @@ const authRouter = Router();
  * 
  */
 
-authRouter.post("/register", registerController)
+// Public routes does not need authentication
+authRouter.post("/register", authRateLimiter, registerController)
+authRouter.post("/login", authRateLimiter, loginController)
+authRouter.post("/refresh", authRateLimiter, refreshController)
+
+// Protected route 
+authRouter.post("/logout", generalRateLimiter, authenticate, logoutController)
+authRouter.get("/me", generalRateLimiter, authenticate, getMeController)
 
 export default authRouter;
+
+
+
+//TODO
+/**
+ *  login router
+ * - 
+ */
