@@ -35,7 +35,7 @@ export const setAccessToken = (res: Response, token: string): void => {
 export const setRefreshToken = (res: Response, token: string): void => {
     res.cookie(COOKIE_NAMES.REFRESH_TOKEN, token, {
         ...BASE_COOKIE_CONFIG,
-        path: "/auth/refresh", // only sent to this specific endpoint
+        path: "/api/v1/auth/refresh", // only sent to this specific endpoint
         maxAge: parseInt(env.REFRESH_TOKEN_EXPIRY) * 24 * 60 * 60 * 1000, //converts into milliseconds
     })
 }
@@ -48,13 +48,13 @@ export const setRefreshToken = (res: Response, token: string): void => {
  */
 
 export const clearCookies = (res: Response): void => {
-    res.cookie(COOKIE_NAMES.ACCESS_TOKEN, {
+    res.clearCookie(COOKIE_NAMES.ACCESS_TOKEN, {
         ...BASE_COOKIE_CONFIG,
-        path: "/", // express sets the expiry data as zero internally
+        path: "/",
     })
-    res.cookie(COOKIE_NAMES.REFRESH_TOKEN, {
+    res.clearCookie(COOKIE_NAMES.REFRESH_TOKEN, {
         ...BASE_COOKIE_CONFIG,
-        path: "/auth/refresh"
+        path: "/api/v1/auth/refresh"
     })
 }
 

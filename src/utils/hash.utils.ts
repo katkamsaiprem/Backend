@@ -15,3 +15,19 @@ export const hashPassword = async (password: string): Promise<string> => {
 
     return await bcrypt.hash(password, SALT_ROUNDS)
 }
+
+export const verifyPassword = async (password: string, passwordHash: string) => {
+
+    const isPasswordValid = await bcrypt.compare(password, passwordHash)
+
+    return isPasswordValid;
+}
+
+export const hashToken = async (refreshToken: string) => {
+    return await bcrypt.hash(refreshToken, 6)
+}
+
+
+export const compareToken = async (incomingRefreshToken: string, refreshTokenHash: string) => {
+    return await bcrypt.compare(incomingRefreshToken, refreshTokenHash);
+}
