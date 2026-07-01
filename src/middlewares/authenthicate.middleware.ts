@@ -60,10 +60,6 @@ export const authenticate = async (req: Request, _res: Response, next: NextFunct
         throw new AppError("Invalid access Token", 401);
     }
 
-    const user = await findUserById({ id: userId })    if (!Number.isFinite(userId)) {// isFinite checks whether a number is finite or not ,it returns false for NaN ,Infinity and -Infinity and non-numeric types 
-        throw new AppError("Invalid access Token", 401);
-    }
-
     const user = await findUserById({ id: userId })
     if (!user || !user.isActive) {
         throw new AppError("User not found or deactivated", 401)
