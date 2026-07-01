@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getMeController, loginController, logoutController, refreshController, registerController } from "./auth.controller.js";
 import { authenticate } from "@/middlewares/authenthicate.middleware.js";
-import { authRateLimiter, generalRateLimiter } from "@/middlewares/reateLimiter.middleware.js";
+import { authRateLimiter } from "@/middlewares/reateLimiter.middleware.js";
 
 
 const authRouter = Router();
@@ -19,8 +19,8 @@ authRouter.post("/login", authRateLimiter, loginController)
 authRouter.post("/refresh", authRateLimiter, refreshController)
 
 // Protected route 
-authRouter.post("/logout", generalRateLimiter, authenticate, logoutController)
-authRouter.get("/me", generalRateLimiter, authenticate, getMeController)
+authRouter.post("/logout", authenticate, logoutController)
+authRouter.get("/me", authenticate, getMeController)
 
 export default authRouter;
 
