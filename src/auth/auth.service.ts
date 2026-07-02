@@ -1,9 +1,10 @@
-import { InsertUser, SelectUser } from "@/db/schema/users.schema.js"
-// import { createUserRepository, findUserByEmail, findUserByEmailOrUserNameRepository, findUserById, saveRefreshToken } from "./auth.repository.js"
+import { SelectUser } from "@/db/schema/users.schema.js"
+import { RegisterInput } from "@/types/index.js"
 import * as authRepository from "@/auth/auth.repository.js"
 import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
 import { compareToken, hashPassword, hashToken, verifyPassword } from "@/utils/hash.utils.js"
 import { generateTokenPair, verifyRefreshToken } from "@/utils/jwt.utils.js"
+import { LoginInput } from "@/types/index.js"
 
 
 
@@ -18,7 +19,7 @@ import { generateTokenPair, verifyRefreshToken } from "@/utils/jwt.utils.js"
  * @returns {}
  */
 
-export const createUserService = async ({ username, email, passwordHash }: Pick<InsertUser, "username" | "email" | "passwordHash">) => {
+export const createUserService = async ({ username, email, password }: RegisterInput) => {
 
     // sanitize inputs 
     const cleanUsername = username.trim();
@@ -36,7 +37,7 @@ export const createUserService = async ({ username, email, passwordHash }: Pick<
             throw new AppError("Username already exists", 409)
     }
 
-    const hashedPassword = await hashPassword(passwordHash)
+    const hashedPassword = await hashPassword(password)
 
     const newUser = await authRepository.createUserRepository({ username: cleanUsername, email: cleanEmail, passwordHash: hashedPassword })
 
@@ -50,7 +51,7 @@ export const createUserService = async ({ username, email, passwordHash }: Pick<
 
 
 
-export const loginService = async ({ email, password }: { email: string; password: string }) => {
+export const loginService = async ({ email, password }: LoginInput) => {
 
     const cleanEmail = email.trim().toLowerCase()
 

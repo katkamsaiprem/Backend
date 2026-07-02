@@ -1,4 +1,5 @@
 import express from "express"
+import { Request, Response } from "express"
 import cookieParser from 'cookie-parser'
 import { env } from "@/config/env.js"
 import { globalErrorHandler } from "@/middlewares/globalErrorHandler.middlewares.js";
@@ -6,18 +7,23 @@ import { notFoundHandler } from "@/middlewares/routeNotFound.middlewares.js";
 import propertyRouter from "@/properties/properties.router.js";
 import authRouter from "./auth/auth.router.js";
 import helmet from "helmet";
+import cors from "cors"
 import { generalRateLimiter } from "./middlewares/reateLimiter.middleware.js";
+import { ApiResponse } from "./types/index.js";
+import { corsOptions } from "./middlewares/cors.middleware.js";
 
 
 
 
 const app = express()
 
+//-----------Security-------------------------
 
 app.use(helmet()) // set security HTTP headers
 
-// TODO
-// add Cors middleware
+// cors controls which origins (domains) are allowed to send req
+// in prod , it should be frontend domain only
+app.use(cors(corsOptions))
 
 //------------- Body Parsing---------------------
 
@@ -58,9 +64,9 @@ app.use(globalErrorHandler)
 
 
 
-app.get("/health-check", (_req, res) => {
+app.get("/health-check", (_req: Request, res: Response<ApiResponse>) => {
     res.status(200).json({
-        status: "ok",
+        success: true,
         message: "server is healthy"
     })
 })

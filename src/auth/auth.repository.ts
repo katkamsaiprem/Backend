@@ -29,11 +29,6 @@ export const findUserByEmailOrUserNameRepository = async ({ email, username }: P
 }
 
 
-export const createUser = async ({ email, username, passwordHash }: Pick<InsertUser, "email" | "username" | "passwordHash">) => {
-
-    const [userCreated] = await db.insert(users).values({ email, username, passwordHash }).returning(); // returing returns all columns of created user (fields)
-    return userCreated;
-}
 
 export const findUserByEmail = async ({ email }: Pick<SelectUser, "email">) => {
 
