@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { ApiResponse } from "@/types/index.js"
 import { categoriesService, createPropertyService, getAllPropertiesService, getPropertyByIdService } from "./properties.service.js"
 import { InsertProperty } from "@/db/schema/properties.schema.js"
 import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
@@ -6,7 +7,7 @@ import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
 
 
 
-export const createPropertyController = async (req: Request, res: Response): Promise<void> => {
+export const createPropertyController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     //TODO 
     //implement ZOD
@@ -32,7 +33,7 @@ export const createPropertyController = async (req: Request, res: Response): Pro
 }
 
 
-export const getPropertiesController = async (req: Request, res: Response): Promise<void> => {
+export const getPropertiesController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     const { category } = req.query // ?category=villa
     const properties = category ? await categoriesService(category as string) : await getAllPropertiesService()
@@ -48,7 +49,7 @@ export const getPropertiesController = async (req: Request, res: Response): Prom
 }
 
 
-export const getPropertyByIdController = async (req: Request, res: Response): Promise<void> => {
+export const getPropertyByIdController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     const { id } = req.params
 

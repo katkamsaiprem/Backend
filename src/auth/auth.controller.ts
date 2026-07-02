@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { InsertUser } from "@/db/schema/users.schema.js";
 import * as authService from "@/auth/auth.service.js";
 import { clearCookies, COOKIE_NAMES, setAccessToken, setRefreshToken } from "@/utils/cookies.utils.js";
 import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js";
+import { LoginInput, RegisterInput, ApiResponse } from "@/types/index.js";
 
 
 
 
 new Date().toISOString();//?
 
-export const registerController = async (req: Request, res: Response): Promise<void> => {
+export const registerController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
-    const body = req.body as Pick<InsertUser, "email" | "username" | "passwordHash">  // remove this type casting after implementing ZOD
+    const body = req.body as RegisterInput  // remove this type casting after implementing ZOD
 
 
     const { tokens, user } = await authService.createUserService(body)
@@ -33,9 +33,9 @@ export const registerController = async (req: Request, res: Response): Promise<v
 
 }
 
-export const loginController = async (req: Request, res: Response): Promise<void> => {
+export const loginController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
-    const { email, password } = req.body as { email?: unknown; password?: unknown }
+    const { email, password } = req.body as LoginInput
 
     if (typeof email !== "string" || typeof password !== "string" || !email.trim() || !password) {
         throw new AppError("Email and password are required", 400)
@@ -66,7 +66,7 @@ export const loginController = async (req: Request, res: Response): Promise<void
  * @param req 
  * @param res 
  */
-export const refreshController = async (req: Request, res: Response): Promise<void> => {
+export const refreshController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     const incomingRefreshToken = req.cookies[COOKIE_NAMES.REFRESH_TOKEN]
 
@@ -95,7 +95,7 @@ export const refreshController = async (req: Request, res: Response): Promise<vo
  *  - clear client cookies 
  *  - send success res
  */
-export const logoutController = async (req: Request, res: Response): Promise<void> => {
+export const logoutController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     await authService.logoutUser({ id: req.user!.id }); // "!" tells ts that trust me i know this property will not be undefined 
 
@@ -112,7 +112,7 @@ export const logoutController = async (req: Request, res: Response): Promise<voi
  *  -req.user set by authenticate middleware
  *  - send user data to client
  */
-export const getMeController = (req: Request, res: Response): void => {
+export const getMeController = (req: Request, res: Response<ApiResponse>): void => {
     // req.user already has the safe user data from authenticate middleware 
     res.status(200).json({
         success: true,
