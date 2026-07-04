@@ -20,7 +20,7 @@ const app = express()
 
 //-----------Security-------------------------
 
-app.use(helmet()) // set security HTTP headers
+app.use((helmet as any)()) // set security HTTP headers
 
 // cors controls which origins (domains) are allowed to send req
 // in prod , it should be frontend domain only
