@@ -74,3 +74,4 @@ app.get("/health-check", (_req: Request, res: Response<ApiResponse>) => {
 })
 
 export { app }
+export default app;
