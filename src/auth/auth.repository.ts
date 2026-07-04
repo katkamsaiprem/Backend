@@ -1,5 +1,5 @@
-import { db } from "@/db/index.js"
-import { InsertUser, SelectUser, users } from "@/db/schema/users.schema.js"
+import { db } from "../db/index.js"
+import { InsertUser, SelectUser, users } from "../db/schema/users.schema.js"
 import { and, eq, ilike, or } from "drizzle-orm";
 
 export const createUserRepository = async (payload: InsertUser) => {

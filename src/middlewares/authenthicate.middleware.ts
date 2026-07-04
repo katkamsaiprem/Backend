@@ -1,10 +1,10 @@
 
-import { COOKIE_NAMES } from "@/utils/cookies.utils.js"
+import { COOKIE_NAMES } from "../utils/cookies.utils.js"
 import { NextFunction, Request, Response } from "express"
 import { AppError } from "./globalErrorHandler.middlewares.js";
-import { verifyAccessToken } from "@/utils/jwt.utils.js";
-import { findUserById } from "@/auth/auth.repository.js";
-import { SafeUser } from "@/auth/auth.service.js";
+import { verifyAccessToken } from "../utils/jwt.utils.js";
+import { findUserById } from "../auth/auth.repository.js";
+import { SafeUser } from "../auth/auth.service.js";
 
 
 //code realted to verifing access token

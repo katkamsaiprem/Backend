@@ -1,6 +1,6 @@
 
 import type { Request, Response } from "express";
-import { ApiResponse } from "@/types/index.js";
+import { ApiResponse } from "../types/index.js";
 
 export function notFoundHandler(req: Request, res: Response<ApiResponse>): void {
     res.status(404).json({

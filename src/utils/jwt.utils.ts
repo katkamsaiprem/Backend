@@ -2,8 +2,8 @@
 // code related to Sign , verify , decode tokens
 
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { SelectUser } from "@/db/schema/users.schema.js";
-import { env } from "@/config/env.js";
+import { SelectUser } from "../db/schema/users.schema.js";
+import { env } from "../config/env.js";
 
 
 // this token travels with every request

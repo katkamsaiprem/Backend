@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 // user validation schema 
 
-import type { SelectUser } from '@/db/schema/users.schema.js' // to know what types db is expecting
+import type { SelectUser } from "../db/schema/users.schema.js" // to know what types db is expecting
 
 // Schema means set rules
 // set rules to rgisterInputs

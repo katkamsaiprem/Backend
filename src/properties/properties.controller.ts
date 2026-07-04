@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
-import { ApiResponse } from "@/types/index.js"
+import { ApiResponse } from "../types/index.js"
 import { categoriesService, createPropertyService, getAllPropertiesService, getPropertyByIdService } from "./properties.service.js"
-import { InsertProperty } from "@/db/schema/properties.schema.js"
-import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
+import { InsertProperty } from "../db/schema/properties.schema.js"
+import { AppError } from "../middlewares/globalErrorHandler.middlewares.js"
 
 
 

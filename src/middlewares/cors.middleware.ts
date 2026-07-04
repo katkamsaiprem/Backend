@@ -1,4 +1,4 @@
-import { env } from "@/config/env.js"
+import { env } from "../config/env.js"
 import { CorsOptions } from "cors"
 import { AppError } from "./globalErrorHandler.middlewares.js";
 

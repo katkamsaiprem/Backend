@@ -1,5 +1,5 @@
-import { db } from "@/db/index.js";
-import { whishlist } from "@/db/schema/whishlist.schema.js";
+import { db } from "../db/index.js";
+import { whishlist } from "../db/schema/whishlist.schema.js";
 import { eq } from "drizzle-orm";
 
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ApiResponse, createWhishlistSchema, deleteWhishlistSchema } from "@/types/index.js";
-import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js";
+import { ApiResponse, createWhishlistSchema, deleteWhishlistSchema } from "../types/index.js";
+import { AppError } from "../middlewares/globalErrorHandler.middlewares.js";
 import * as whishlistService from "./whishlist.service.js"
 
 export const createWhishlistController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {

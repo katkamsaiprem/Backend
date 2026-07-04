@@ -1,4 +1,4 @@
-import { env, isProduction } from "@/config/env.js";
+import { env, isProduction } from "../config/env.js";
 import { Response } from "express"
 
 

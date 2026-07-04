@@ -1,10 +1,10 @@
 import express from "express"
 import { Request, Response } from "express"
 import cookieParser from 'cookie-parser'
-import { env } from "@/config/env.js"
-import { globalErrorHandler } from "@/middlewares/globalErrorHandler.middlewares.js";
-import { notFoundHandler } from "@/middlewares/routeNotFound.middlewares.js";
-import propertyRouter from "@/properties/properties.router.js";
+import { env } from "./config/env.js"
+import { globalErrorHandler } from "./middlewares/globalErrorHandler.middlewares.js";
+import { notFoundHandler } from "./middlewares/routeNotFound.middlewares.js";
+import propertyRouter from "./properties/properties.router.js";
 import authRouter from "./auth/auth.router.js";
 import helmet from "helmet";
 import cors from "cors"

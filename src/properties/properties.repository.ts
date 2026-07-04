@@ -1,5 +1,5 @@
-import { db } from "@/db/index.js"
-import { InsertProperty, properties } from "@/db/schema/properties.schema.js"
+import { db } from "../db/index.js"
+import { InsertProperty, properties } from "../db/schema/properties.schema.js"
 import { eq } from "drizzle-orm";
 
 

@@ -1,7 +1,7 @@
 
-import { isDevelopment } from "@/config/env.js";
+import { isDevelopment } from "../config/env.js";
 import type { Request, Response, NextFunction } from "express";
-import { ApiResponse } from "@/types/index.js";
+import { ApiResponse } from "../types/index.js";
 
 
 export class AppError extends Error {

@@ -3,7 +3,7 @@
 //Connection pool maintains a pool of db connections ready to use.
 
 
-import { env } from "@/config/env.js"
+import { env } from "../config/env.js"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { Pool } from "pg"
 

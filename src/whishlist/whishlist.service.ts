@@ -1,6 +1,6 @@
 import * as whishlistRepository from "./whishlist.repository.js"
-import { CreateWhishlistInput, DeleteWhishlistInput } from "@/types/index.js";
-import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js";
+import { CreateWhishlistInput, DeleteWhishlistInput } from "../types/index.js";
+import { AppError } from "../middlewares/globalErrorHandler.middlewares.js";
 
 
 export const createWhishlist = async ({ whishlistedItemId }: CreateWhishlistInput) => {
