@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 import type { SelectUser } from '@/db/schema/users.schema.js' // to know what types db is expecting
 
-
+// Schema means set rules
 // set rules to rgisterInputs
 export const registerSchema = z.object({
     body: z.object({
@@ -43,11 +43,31 @@ export const loginSchema = z.object({
     })
 })
 
+
+// rules for whishlist inputs
+export const createWhishlistSchema = z.object({
+    body: z.object({
+        whishlistedItemId: z.string({ error: "WhishlistedItemId is required" }).trim(),
+    })
+})
+
+// set rules for delete whishlist api
+export const deleteWhishlistSchema = z.object({
+    params: z.object({
+        id: z
+            .string({ error: "Id is required" })
+            .trim()
+    })
+})
+
+
+
 // take(inferred) types from zod schema
 
 export type RegisterInput = z.infer<typeof registerSchema>["body"];
-export type LoginInput = z.infer<typeof loginSchema>["body"]
-
+export type LoginInput = z.infer<typeof loginSchema>["body"];
+export type CreateWhishlistInput = z.infer<typeof createWhishlistSchema>["body"];
+export type DeleteWhishlistInput = z.infer<typeof deleteWhishlistSchema>["params"];
 
 // API response types
 

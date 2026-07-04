@@ -11,6 +11,7 @@ import cors from "cors"
 import { generalRateLimiter } from "./middlewares/reateLimiter.middleware.js";
 import { ApiResponse } from "./types/index.js";
 import { corsOptions } from "./middlewares/cors.middleware.js";
+import { whishlistRouter } from "./whishlist/whishlist.router.js";
 
 
 
@@ -48,6 +49,7 @@ app.use(generalRateLimiter);
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/properties", propertyRouter);
+app.use("/api/v1/whishlist", whishlistRouter);
 
 
 

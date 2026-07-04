@@ -4,3 +4,4 @@
 
 export * from "./users.schema.js"
 export * from "./properties.schema.js"
+export * from "./whishlist.schema.js"

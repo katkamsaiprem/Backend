@@ -1,4 +1,4 @@
-// TODO
+
 // code related to prevent brute force attack
 /**
  * @description
@@ -35,5 +35,5 @@ export const generalRateLimiter = rateLimit({
         message: "Too many request from same IP , Please slow down"
     },
 
-    skipSuccessfulRequests: false, //count all requests , not just failures , so by counting success req too , you stop the script after 10min, regardless of whether correct or not
+    skipSuccessfulRequests: false, 
 });

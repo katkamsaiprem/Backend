@@ -50,6 +50,27 @@
       "when": 1782650952864,
       "tag": "0006_legal_owl",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1783089149324,
+      "tag": "0007_lumpy_slyde",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1783096115128,
+      "tag": "0008_certain_robbie_robertson",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1783138241979,
+      "tag": "0009_bumpy_hitman",
+      "breakpoints": true
     }
   ]
 }
