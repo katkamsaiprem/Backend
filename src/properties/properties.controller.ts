@@ -9,11 +9,6 @@ import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js"
 
 export const createPropertyController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
-    //TODO 
-    //implement ZOD
-    // validate data or safety check
-
-
 
 
     const input = req.body as InsertProperty // remove this type casting after implementing ZOD

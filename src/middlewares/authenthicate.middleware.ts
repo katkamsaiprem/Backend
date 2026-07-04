@@ -6,7 +6,7 @@ import { verifyAccessToken } from "@/utils/jwt.utils.js";
 import { findUserById } from "@/auth/auth.repository.js";
 import { SafeUser } from "@/auth/auth.service.js";
 
-//TODO
+
 //code realted to verifing access token
 // gatekeeper
 

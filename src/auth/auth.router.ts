@@ -6,13 +6,6 @@ import { authRateLimiter } from "@/middlewares/reateLimiter.middleware.js";
 
 const authRouter = Router();
 
-//TODO
-/**
- * add ratelimiter
- * add input validatiion using zod
- * 
- */
-
 // Public routes does not need authentication
 authRouter.post("/register", authRateLimiter, registerController)
 authRouter.post("/login", authRateLimiter, loginController)
@@ -25,9 +18,3 @@ authRouter.get("/me", authenticate, getMeController)
 export default authRouter;
 
 
-
-//TODO
-/**
- *  login router
- * - 
- */

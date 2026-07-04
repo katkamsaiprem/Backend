@@ -10,7 +10,6 @@ propertyRouter.post("/", createPropertyController)
 propertyRouter.get("/", getPropertiesController)
 propertyRouter.get("/:id", getPropertyByIdController)
 
-//TODO
-//single hotel router
+
 
 export default propertyRouter

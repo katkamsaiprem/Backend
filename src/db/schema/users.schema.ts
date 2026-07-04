@@ -1,4 +1,4 @@
-// TODO
+
 /**
  * create users table 
  * - with columns id , name, gmail, bio, isActive, createdAt, updatedAt ,add unique index on gmail 
@@ -43,9 +43,3 @@ export type SelectUser = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 
-//TODO
-/**
- * Singup router and login
- *  follow api/auth/register 
- *  - 
- */

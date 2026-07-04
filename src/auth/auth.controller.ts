@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import * as authService from "@/auth/auth.service.js";
 import { clearCookies, COOKIE_NAMES, setAccessToken, setRefreshToken } from "@/utils/cookies.utils.js";
 import { AppError } from "@/middlewares/globalErrorHandler.middlewares.js";
-import { LoginInput, RegisterInput, ApiResponse } from "@/types/index.js";
+import { LoginInput, RegisterInput, ApiResponse, registerSchema, loginSchema } from "@/types/index.js";
 
 
 
@@ -11,7 +11,11 @@ new Date().toISOString();//?
 
 export const registerController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
-    const body = req.body as RegisterInput  // remove this type casting after implementing ZOD
+    const parseResult = registerSchema.safeParse({ body: req.body });
+    if (!parseResult.success) {
+        throw new AppError(parseResult.error.issues.map(e => e.message).join(", "), 400);
+    }
+    const body = parseResult.data.body;
 
 
     const { tokens, user } = await authService.createUserService(body)
@@ -20,7 +24,6 @@ export const registerController = async (req: Request, res: Response<ApiResponse
 
 
 
-    // TODO 
     // set cookies that browser stores them automatically 
     setAccessToken(res, tokens.accessToken)
     setRefreshToken(res, tokens.refreshToken)
@@ -35,11 +38,11 @@ export const registerController = async (req: Request, res: Response<ApiResponse
 
 export const loginController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
-    const { email, password } = req.body as LoginInput
-
-    if (typeof email !== "string" || typeof password !== "string" || !email.trim() || !password) {
-        throw new AppError("Email and password are required", 400)
+    const parseResult = loginSchema.safeParse({ body: req.body });
+    if (!parseResult.success) {
+        throw new AppError(parseResult.error.issues.map(e => e.message).join(", "), 400);
     }
+    const { email, password } = parseResult.data.body;
 
     const { tokens, user } = await authService.loginService({ email, password })
 
@@ -98,6 +101,7 @@ export const refreshController = async (req: Request, res: Response<ApiResponse>
 export const logoutController = async (req: Request, res: Response<ApiResponse>): Promise<void> => {
 
     await authService.logoutUser({ id: req.user!.id }); // "!" tells ts that trust me i know this property will not be undefined 
+    // "!" tell ts that i know this req.user looks undefined to you ,but  auth middleware will do runtime validation to gurantee user exists
 
     clearCookies(res);
 
