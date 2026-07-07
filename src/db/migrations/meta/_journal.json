@@ -71,6 +71,20 @@
       "when": 1783138241979,
       "tag": "0009_bumpy_hitman",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1783405708706,
+      "tag": "0010_charming_retro_girl",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1783406932415,
+      "tag": "0011_sour_kulan_gath",
+      "breakpoints": true
     }
   ]
 }

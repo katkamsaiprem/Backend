@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { ApiResponse, createWhishlistSchema, deleteWhishlistSchema } from "../types/index.js";
+import { ApiResponse } from "../types/index.js";
+import { createWhishlistSchema, deleteWhishlistSchema } from "./whishlist.schema.zod.js";
 import { AppError } from "../middlewares/globalErrorHandler.middlewares.js";
 import * as whishlistService from "./whishlist.service.js"
 

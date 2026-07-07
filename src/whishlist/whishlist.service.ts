@@ -1,5 +1,5 @@
 import * as whishlistRepository from "./whishlist.repository.js"
-import { CreateWhishlistInput, DeleteWhishlistInput } from "../types/index.js";
+import { CreateWhishlistInput, DeleteWhishlistInput } from "./whishlist.schema.zod.js";
 import { AppError } from "../middlewares/globalErrorHandler.middlewares.js";
 
 

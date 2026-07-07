@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import * as authService from "./auth.service.js";
 import { clearCookies, COOKIE_NAMES, setAccessToken, setRefreshToken } from "../utils/cookies.utils.js";
 import { AppError } from "../middlewares/globalErrorHandler.middlewares.js";
-import { ApiResponse, registerSchema, loginSchema } from "../types/index.js";
+import { ApiResponse } from "../types/index.js";
+import { registerSchema, loginSchema } from "./auth.schema.zod.js";
 
 
 

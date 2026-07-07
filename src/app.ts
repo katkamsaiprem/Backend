@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser'
 import { env } from "./config/env.js"
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.middlewares.js";
 import { notFoundHandler } from "./middlewares/routeNotFound.middlewares.js";
-import propertyRouter from "./properties/properties.router.js";
 import authRouter from "./auth/auth.router.js";
 import helmet from "helmet";
 import cors from "cors"
@@ -12,6 +11,7 @@ import { generalRateLimiter } from "./middlewares/reateLimiter.middleware.js";
 import { ApiResponse } from "./types/index.js";
 import { corsOptions } from "./middlewares/cors.middleware.js";
 import { whishlistRouter } from "./whishlist/whishlist.router.js";
+import venueRouter from "./venues/venues.router.js";
 
 
 
@@ -48,8 +48,8 @@ app.use(generalRateLimiter);
 //---------------Routes---------------
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/whishlist", whishlistRouter);
+app.use("/api/v1/venues", venueRouter);
 
 
 
