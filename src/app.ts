@@ -12,6 +12,7 @@ import { ApiResponse } from "./types/index.js";
 import { corsOptions } from "./middlewares/cors.middleware.js";
 import { whishlistRouter } from "./whishlist/whishlist.router.js";
 import venueRouter from "./venues/venues.router.js";
+import categoriesRouter from "./categories/categories.router.js";
 
 
 
@@ -50,6 +51,7 @@ app.use(generalRateLimiter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/whishlist", whishlistRouter);
 app.use("/api/v1/venues", venueRouter);
+app.use("/api/v1/categories", categoriesRouter);
 
 
 

@@ -5,3 +5,4 @@
 export * from "./users.schema.js"
 export * from "./whishlist.schema.js"
 export * from "./venues.schema.js"
+export * from "./categories.schema.js"

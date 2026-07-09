@@ -85,6 +85,13 @@
       "when": 1783406932415,
       "tag": "0011_sour_kulan_gath",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1783601833834,
+      "tag": "0012_white_timeslip",
+      "breakpoints": true
     }
   ]
 }
