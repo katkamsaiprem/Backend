@@ -53,7 +53,12 @@ app.use("/api/v1/whishlist", whishlistRouter);
 app.use("/api/v1/venues", venueRouter);
 app.use("/api/v1/categories", categoriesRouter);
 
-
+app.get("/health-check", (_req: Request, res: Response<ApiResponse>) => {
+    res.status(200).json({
+        success: true,
+        message: "server is healthy"
+    })
+})
 
 
 
@@ -68,12 +73,7 @@ app.use(globalErrorHandler)
 
 
 
-app.get("/health-check", (_req: Request, res: Response<ApiResponse>) => {
-    res.status(200).json({
-        success: true,
-        message: "server is healthy"
-    })
-})
+
 
 export { app }
 export default app;
