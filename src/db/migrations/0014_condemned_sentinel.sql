@@ -1,0 +1,1 @@
+ALTER TABLE "whishlist" ALTER COLUMN "user_id" SET DEFAULT 1;

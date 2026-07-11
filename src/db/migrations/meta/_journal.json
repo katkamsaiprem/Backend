@@ -92,6 +92,20 @@
       "when": 1783601833834,
       "tag": "0012_white_timeslip",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1783787175776,
+      "tag": "0013_stormy_kronos",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1783787438892,
+      "tag": "0014_condemned_sentinel",
+      "breakpoints": true
     }
   ]
 }
