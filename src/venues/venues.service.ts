@@ -1,12 +1,11 @@
 import { InsertVenue } from "../db/schema/venues.schema.js";
 import {
     createVenueRepository,
-    getAllVenuesRepository,
-    getVenueBySportRepository,
+    getFilteredVenuesRepository,
     getVenueByIdRepository,
     insertManyVenuesRepository,
 } from "./venues.repository.js";
-import { CreateVenueInput, BulkCreateVenuesInput } from "./venues.schema.zod.js";
+import { CreateVenueInput, BulkCreateVenuesInput, GetVenuesQueryInput } from "./venues.schema.zod.js";
 
 
 // Create a new venue
@@ -39,18 +38,11 @@ export const bulkInsertVenuesService = async (data: BulkCreateVenuesInput) => {
 }
 
 
-// Fetch all venues
+// Fetch venues with optional filters and pagination
 
-export const getAllVenuesService = async () => {
+export const getFilteredVenuesService = async (filters: GetVenuesQueryInput) => {
 
-    return getAllVenuesRepository();
-
-}
-
-
-export const getVenueBySportService = async (sport: string) => {
-
-    return getVenueBySportRepository(sport);
+    return getFilteredVenuesRepository(filters);
 
 }
 
@@ -59,4 +51,7 @@ export const getVenueByIdService = async (id: number) => {
 
     return getVenueByIdRepository(id);
 
+
 }
+
+

@@ -117,16 +117,79 @@ export const getVenueByIdSchema = z.object({
 });
 
 
-// Validate the optional sport query string
+// Validate all optional filter + pagination query params
 
-export const getVenuesBySportSchema = z.object({
+export const getVenuesQuerySchema = z.object({
     query: z.object({
+
         sport: z
-            .string({ error: "sport query param must be a string" })
-            .min(1, "sport query param cannot be empty")
-            .max(100, "sport query param cannot exceed 100 characters")
+            .string()
+            .min(1)
+            .max(100)
             .trim()
             .optional(),
+
+        name: z
+            .string()
+            .min(1)
+            .max(150)
+            .trim()
+            .optional(),
+
+        minPrice: z
+            .string()
+            .regex(/^\d+$/, "minPrice must be a positive integer")
+            .transform(Number)
+            .optional(),
+
+        maxPrice: z
+            .string()
+            .regex(/^\d+$/, "maxPrice must be a positive integer")
+            .transform(Number)
+            .optional(),
+
+        capacity: z
+            .string()
+            .regex(/^\d+$/, "capacity must be a positive integer")
+            .transform(Number)
+            .optional(),
+
+        numberOfCourts: z
+            .string()
+            .regex(/^\d+$/, "numberOfCourts must be a positive integer")
+            .transform(Number)
+            .optional(),
+
+        courtType: z
+            .string()
+            .min(1)
+            .max(100)
+            .trim()
+            .optional(),
+
+        minRating: z
+            .string()
+            .regex(/^\d+(\.\d+)?$/, "minRating must be a number")
+            .transform(Number)
+            .optional(),
+
+        isCancelable: z
+            .enum(["true", "false"])
+            .transform((v) => v === "true")
+            .optional(),
+
+        page: z
+            .string()
+            .regex(/^\d+$/, "page must be a positive integer")
+            .transform(Number)
+            .catch(1),
+
+        limit: z
+            .string()
+            .regex(/^\d+$/, "limit must be a positive integer")
+            .transform(Number)
+            .catch(16),
+
     }),
 });
 
@@ -137,6 +200,6 @@ export type CreateVenueInput = z.infer<typeof createVenueSchema>["body"];
 
 export type GetVenueByIdInput = z.infer<typeof getVenueByIdSchema>["params"];
 
-export type GetVenuesBySportInput = z.infer<typeof getVenuesBySportSchema>["query"];
+export type GetVenuesQueryInput = z.infer<typeof getVenuesQuerySchema>["query"];
 
 export type BulkCreateVenuesInput = z.infer<typeof bulkCreateVenuesSchema>["body"];
